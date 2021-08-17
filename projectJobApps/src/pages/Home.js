@@ -26,6 +26,9 @@ const Home = () => {
                         </View>
                     </View>
                 </View>
+                <View style={styles.carouselJob}>
+                    <Title text="Most Popular" fontSize={14} lineHeight={18} fontWeight="600" fontFamily="inter" color="#333333"/>
+                </View>
             </View>
         </ScrollView>
     );
