@@ -47,7 +47,7 @@ export const mostPopular = [
     },
 ]
 
-export const data = [
+export const cardData = [
     {
         title: "FE Developer",
         lokasi: "Google - Jakarta, ID",
@@ -72,6 +72,20 @@ export const data = [
     {
         title: "Graphic Designer",
         lokasi: "Google - Jakarta, ID",
+        image: "https://source.unsplash.com/random",
+        paidAt: 50,
+        paidEnd: 75
+    },
+    {
+        title: "QA Tester",
+        lokasi: "Airbnb - New York, USA",
+        image: "https://source.unsplash.com/random",
+        paidAt: 50,
+        paidEnd: 75
+    },
+    {
+        title: "Software Engineer",
+        lokasi: "Grab - Jakarta, ID",
         image: "https://source.unsplash.com/random",
         paidAt: 50,
         paidEnd: 75

@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Image, TextInput, ScrollView } from 'react-native';
 import React from 'react';
-import { mostPopular, data, tagJob } from '../dummy/data';
+import { mostPopular, cardData, tagJob } from '../dummy/data';
 // import Filter from '../assets/Group1.svg';
 // import Search from '../assets/Search.svg';
 
@@ -30,37 +30,49 @@ const Home = () => {
                 <View style={styles.carouselJob}>
                     <Text style={styles.titlePopular}>Most Popular</Text>
                     <ScrollView horizontal={true}>
-                    <View style={{ flexDirection: "row", top: 12 }}>
-                        {mostPopular.map(item => (
-                            <View style={styles.cardCarousel} key={item.title}>
-                                <View style={styles.warpheaderCardJob}>
-                                    <View style={{ width: 43, height: 43, backgroundColor: "rgba(58, 119, 255, 0.1)", borderRadius: 8, padding: 6 }}>
-                                        <Image style={{ width: 32, height: 31 }} source={{ uri: item.image }} />
-                                    </View>
-                                    <Text style={{ fontSize: 11, lineHeight: 13.31, fontWeight: "400" }}>${item.paidAt} - ${item.paidEnd} / Mo</Text>
-                                </View>
-                                <Text style={styles.titleJob}>{item.title}</Text>
-                                <Text style={styles.lokasiJob}>{item.lokasi}</Text>
-                                <View style={styles.wrapCardTagJob}>
-                                    {item.tag.map(itemTag => (
-                                        <View style={styles.tagJob}>
-                                            <Text style={{ fontSize: 9, lineHeight: 10.89, fontWeight: "400" }}>{itemTag.name}</Text>
+                        <View style={{ flexDirection: "row", top: 12 }}>
+                            {mostPopular.map(item => (
+                                <View style={styles.cardCarousel} key={item.title}>
+                                    <View style={styles.warpheaderCardJob}>
+                                        <View style={{ width: 43, height: 43, backgroundColor: "rgba(58, 119, 255, 0.1)", borderRadius: 8, padding: 6 }}>
+                                            <Image style={{ width: 32, height: 31 }} source={{ uri: item.image }} />
                                         </View>
-                                    ))}
-                                </View>
-                            </View>
-                        ))}
-                    </View>
-                    </ScrollView>
-                    <ScrollView horizontal={true}>
-                        <View style={{flexDirection: "row", alignItems: "center"}}>
-                            {tagJob.map((tag, i) => (
-                                <View key={i} style={styles.wrapTagJob}>
-                                    <Text style={{color: "#828282", fontSize: 13, lineHeight: 16}}>{tag.name}</Text>
+                                        <Text style={{ fontSize: 11, lineHeight: 13.31, fontWeight: "400" }}>${item.paidAt} - ${item.paidEnd} / Mo</Text>
+                                    </View>
+                                    <Text style={styles.titleJob}>{item.title}</Text>
+                                    <Text style={styles.lokasiJob}>{item.lokasi}</Text>
+                                    <View style={styles.wrapCardTagJob}>
+                                        {item.tag.map(itemTag => (
+                                            <View style={styles.tagJob}>
+                                                <Text style={{ fontSize: 9, lineHeight: 10.89, fontWeight: "400" }}>{itemTag.name}</Text>
+                                            </View>
+                                        ))}
+                                    </View>
                                 </View>
                             ))}
-                        </View>                    
+                        </View>
                     </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            {tagJob.map((tag, i) => (
+                                <View key={i} style={styles.wrapTagJob}>
+                                    <Text style={{ color: "#828282", fontSize: 13, lineHeight: 16 }}>{tag.name}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </ScrollView>
+                </View>
+                <View style={styles.listCard}>
+                    {cardData.map(card => (
+                        <View key={card.title} style={{ backgroundColor: "#FFFFFF", width: 155, height: 127, borderRadius: 8, padding: 11 }}>
+                            <View style={{ width: 43, height: 43, backgroundColor: "rgba(52, 168, 83, 0.1)", borderRadius: 8, padding: 6 }}>
+                                <Image style={{ width: 32, height: 31 }} source={{ uri: card.image }} />
+                            </View>
+                            <Text style={{ fontSize: 14, lineHeight: 18, fontWeight: "bold", color: "#333333", top: 12 }}>{card.title}</Text>
+                            <Text style={{ fontSize: 9, lineHeight: 10.89, color: "#828282", top: 12 }}>{card.lokasi}</Text>
+                            <Text style={{ fontSize: 9, lineHeight: 10.89, color: "#828282", top: 18 }}>${card.paidAt} - ${card.paidEnd} / Mo</Text>
+                        </View>
+                    ))}
                 </View>
             </View>
         </ScrollView>
@@ -77,10 +89,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     hero: {
-        flex: 0.2,
+        flex: 0.4,
         width: 320,
         height: 50,
-        // backgroundColor: "blue",
+        // backgroundColor: "green",
         paddingTop: 15,
         right: 5
     },
@@ -155,7 +167,7 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(62, 79, 136, 1)"
     },
     carouselJob: {
-        // backgroundColor: "red",
+        // backgroundColor: "blue",
         width: 320,
         height: 220,
         right: 5
@@ -192,11 +204,22 @@ const styles = StyleSheet.create({
         color: "#333333"
     },
     wrapTagJob: {
-        backgroundColor: "#E0E0E0", 
-        paddingHorizontal: 12, 
-        paddingVertical: 3, 
-        borderRadius: 8, 
+        backgroundColor: "#E0E0E0",
+        paddingHorizontal: 12,
+        paddingVertical: 3,
+        borderRadius: 8,
         marginRight: 7
-    }, 
+    },
+    listCard: {
+        // backgroundColor: "red",
+        width: 320,
+        height: 400,
+        top: 17,
+        right: 5,
+        flexWrap: "wrap",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignContent: "space-between"
+    },
 })
 export default Home;
