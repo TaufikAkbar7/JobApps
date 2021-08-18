@@ -1,33 +1,66 @@
 import { View, StyleSheet, Text, Image, TextInput, ScrollView } from 'react-native';
 import React from 'react';
-import Title from '../components/Title';
+import { mostPopular, data, tagJob } from '../dummy/data';
 // import Filter from '../assets/Group1.svg';
-// import Search from '../assets/search.svg';
+// import Search from '../assets/Search.svg';
 
 const Home = () => {
+
     return (
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.hero}>
-                    <View style={{ flex: 0.5, flexDirection: "row" }}>
+                    <View style={{ flex: 0.8, flexDirection: "row" }}>
                         <View>
                             <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>Taufik</Text></Text>
-                            <Title text="Find Your Great Job" fontFamily="inter" color="#3E4F88" fontSize={20} lineHeight={18} fontWeight="bold" paddingVerti={10}/>
+                            <Text style={styles.title}>Find Your Great Job</Text>
                         </View>
                         <Image style={styles.img} source={require('../assets/Ellipse7.png')} />
                     </View>
                     <View style={styles.wrapTextInput}>
                         <View style={styles.textInput}>
-                            {/* <Search style={{ width: 19, height: 19, tintColor: "red" }} source={require('../assets/search.svg')} /> */}
+                            {/* <Search style={{ width: 19, height: 19, tintColor: "red" }} source={require('../assets/search.svg')}/> */}
                             <TextInput style={{ width: 200, height: 40, color: "#000" }} placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
                         </View>
                         <View style={styles.wrapFilter}>
-                            {/* <Filter source={require('../assets/Group1.svg')} /> */}
+                            {/* <Filter source={require('../assets/Group1.svg')}/> */}
                         </View>
                     </View>
                 </View>
                 <View style={styles.carouselJob}>
-                    <Title text="Most Popular" fontSize={14} lineHeight={18} fontWeight="600" fontFamily="inter" color="#333333"/>
+                    <Text style={styles.titlePopular}>Most Popular</Text>
+                    <ScrollView horizontal={true}>
+                    <View style={{ flexDirection: "row", top: 12 }}>
+                        {mostPopular.map(item => (
+                            <View style={styles.cardCarousel} key={item.title}>
+                                <View style={styles.warpheaderCardJob}>
+                                    <View style={{ width: 43, height: 43, backgroundColor: "rgba(58, 119, 255, 0.1)", borderRadius: 8, padding: 6 }}>
+                                        <Image style={{ width: 32, height: 31 }} source={{ uri: item.image }} />
+                                    </View>
+                                    <Text style={{ fontSize: 11, lineHeight: 13.31, fontWeight: "400" }}>${item.paidAt} - ${item.paidEnd} / Mo</Text>
+                                </View>
+                                <Text style={styles.titleJob}>{item.title}</Text>
+                                <Text style={styles.lokasiJob}>{item.lokasi}</Text>
+                                <View style={styles.wrapCardTagJob}>
+                                    {item.tag.map(itemTag => (
+                                        <View style={styles.tagJob}>
+                                            <Text style={{ fontSize: 9, lineHeight: 10.89, fontWeight: "400" }}>{itemTag.name}</Text>
+                                        </View>
+                                    ))}
+                                </View>
+                            </View>
+                        ))}
+                    </View>
+                    </ScrollView>
+                    <ScrollView horizontal={true}>
+                        <View style={{flexDirection: "row", alignItems: "center"}}>
+                            {tagJob.map((tag, i) => (
+                                <View key={i} style={styles.wrapTagJob}>
+                                    <Text style={{color: "#828282", fontSize: 13, lineHeight: 16}}>{tag.name}</Text>
+                                </View>
+                            ))}
+                        </View>                    
+                    </ScrollView>
                 </View>
             </View>
         </ScrollView>
@@ -47,7 +80,7 @@ const styles = StyleSheet.create({
         flex: 0.2,
         width: 320,
         height: 50,
-        // backgroundColor: "red",
+        // backgroundColor: "blue",
         paddingTop: 15,
         right: 5
     },
@@ -56,10 +89,8 @@ const styles = StyleSheet.create({
         color: "#3E4F88",
         fontSize: 20,
         lineHeight: 18,
-        top: 10,
-        fontWeight: 'bold',
-        // backgroundColor: "blue",
-        paddingTop: 2
+        fontWeight: "bold",
+        paddingVertical: 10,
     },
     subTitle: {
         fontFamily: "inter",
@@ -67,6 +98,26 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         width: 104,
         // backgroundColor: "green",
+    },
+    titlePopular: {
+        fontSize: 14,
+        lineHeight: 18,
+        fontWeight: "bold",
+        fontFamily: "inter",
+        color: "#333333",
+    },
+    titleJob: {
+        top: 7,
+        fontSize: 14,
+        fontWeight: "bold",
+        lineHeight: 16.94,
+    },
+    lokasiJob: {
+        top: 10,
+        fontSize: 11,
+        fontWeight: "400",
+        lineHeight: 13.31,
+        color: "#828282"
     },
     textBold: {
         color: "#333333",
@@ -78,6 +129,7 @@ const styles = StyleSheet.create({
         height: 50,
         justifyContent: "space-between",
         alignItems: "center",
+        // backgroundColor: "green",
     },
     img: {
         width: 41,
@@ -89,7 +141,6 @@ const styles = StyleSheet.create({
         width: 310,
         height: 44,
         borderRadius: 8,
-        paddingVertical: 8,
         paddingHorizontal: 16,
         flexDirection: "row",
         alignItems: "center",
@@ -102,6 +153,50 @@ const styles = StyleSheet.create({
         paddingHorizontal: 11,
         paddingVertical: 12,
         backgroundColor: "rgba(62, 79, 136, 1)"
-    }
+    },
+    carouselJob: {
+        // backgroundColor: "red",
+        width: 320,
+        height: 220,
+        right: 5
+    },
+    cardCarousel: {
+        backgroundColor: "#FFFFFF",
+        paddingHorizontal: 11,
+        paddingVertical: 13,
+        borderRadius: 8,
+        marginRight: 12,
+        width: 241,
+        height: 134
+    },
+    wrapCardTagJob: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-around",
+        right: 5,
+        width: 180,
+        // backgroundColor: "blue", 
+        top: 20
+    },
+    tagJob: {
+        paddingHorizontal: 9,
+        paddingVertical: 2,
+        backgroundColor: "#F2F2F2",
+        borderRadius: 4,
+    },
+    warpheaderCardJob: {
+        flexDirection: "row",
+        width: 215,
+        justifyContent: "space-between",
+        alignItems: "center",
+        color: "#333333"
+    },
+    wrapTagJob: {
+        backgroundColor: "#E0E0E0", 
+        paddingHorizontal: 12, 
+        paddingVertical: 3, 
+        borderRadius: 8, 
+        marginRight: 7
+    }, 
 })
 export default Home;
