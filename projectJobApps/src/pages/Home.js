@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     hero: {
-        flex: 0.4,
+        flex: 0.7,
         width: 320,
         height: 50,
         // backgroundColor: "green",
