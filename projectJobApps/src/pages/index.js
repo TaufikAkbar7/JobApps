@@ -1,3 +1,5 @@
 import Home from "./Home";
+import JobDetail from "./JobDetail";
+import onBoarding from "./onBoarding";
 
-export { Home };
+export { Home, JobDetail, onBoarding };
