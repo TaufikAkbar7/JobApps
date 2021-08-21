@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Home, JobDetail, onBoarding } from '../pages';
+import { Home, JobDetail, onBoarding, Search } from '../pages';
 
 const Route = () => {
 
@@ -10,9 +10,10 @@ const Route = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="onBoarding" component={onBoarding}/>
-                <Stack.Screen name="Home" component={Home}/>
+                <Stack.Screen name="onBoarding" component={onBoarding} options={{ headerShown: false }}/>
+                <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
                 <Stack.Screen name="JobDetail" component={JobDetail}/>
+                <Stack.Screen name="Search" component={Search}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
