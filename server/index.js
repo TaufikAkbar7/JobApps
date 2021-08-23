@@ -1,11 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const router = require('./routes');
 require('dotenv');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // handle CORS
 app.use((req, res, next) => {
