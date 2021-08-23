@@ -1,0 +1,15 @@
+POST http://localhost:4000/api/user
+Content-Type: 'application/json'
+Accept: 'application/json'
+
+{
+    "firstName": "test",
+    "lastName": "cuk",
+    "email": "test@gmail.com",
+    "password": "test123",
+}
+
+
+GET http://localhost:4000/api/user
+Content-Type: 'application/json'
+Accept: 'application/json'
