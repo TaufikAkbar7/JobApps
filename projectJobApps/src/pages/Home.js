@@ -1,26 +1,9 @@
-import {
-    View,
-    StyleSheet,
-    Text,
-    Image,
-    TextInput,
-    ScrollView,
-    TouchableOpacity,
-    FlatList,
-    Modal,
-    Pressable,
-    Dimensions,
-    SafeAreaView,
-} from 'react-native';
-import React, { useState } from 'react';
+import { View, StyleSheet, Text, Image, TextInput, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import React from 'react';
 import { mostPopular, tagJob, cardData } from '../dummy/data';
 
 
 const Home = ({ navigation }) => {
-
-    const [text, setText] = useState();
-    const [modalVisible, setModalVisible] = useState(false);
-    const deviceheight = Dimensions.get('window').height;
 
     const data = (item) => {
         const list = {
@@ -57,7 +40,6 @@ const Home = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView>
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.content}>
@@ -71,118 +53,11 @@ const Home = ({ navigation }) => {
                         </View>
                         <View style={styles.wrapTextInput}>
                             <View style={styles.textInput}>
-                                <Pressable onPress={() => navigation.navigate("Search", {
-                                    data: text
-                                })}>
-                                    <Image style={{
-                                         width: 19, 
-                                         height: 19, 
-                                         tintColor: "#BDBDBD" 
-                                         }} 
-                                         source={require('../assets/search.png')} />
-                                </Pressable>
-                                <TextInput onChangeText={(e) => setText(e)} style={{ width: 200, marginLeft: 10, height: 40, color: "#000" }} placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
+                                {/* <Search style={{ width: 19, height: 19, tintColor: "red" }} source={require('../assets/search.svg')}/> */}
+                                <TextInput style={{ width: 200, height: 40, color: "#000" }} placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
                             </View>
                             <View style={styles.wrapFilter}>
-                                <Pressable onPress={() => setModalVisible(true)}>
-                                    <Image style={{ 
-                                        width: 22, 
-                                        height: 19.25 
-                                        }} 
-                                        source={require('../assets/Group.png')} />
-                                </Pressable>
-                                {/* Modal */}
-                                <Modal
-                                    animationType="fade"
-                                    transparent={true}
-                                    visible={modalVisible}
-                                    onRequestClose={() => setModalVisible(!modalVisible)}
-                                >
-                                    <View style={{ 
-                                        flex: 1, 
-                                        justifyContent: "flex-end", 
-                                        backgroundColor: "#000000AA" 
-                                        }}>
-                                    
-                                        <View style={{ 
-                                            backgroundColor: "#FFFFFF", 
-                                            width: '100%', 
-                                            borderTopLeftRadius: 10, 
-                                            borderTopRightRadius: 10, 
-                                            paddingHorizontal: 10, 
-                                            maxHeight: deviceheight * 0.4,
-                                            alignItems: 'center',
-                                            }}>
-                                            <View style={{
-                                                width: 350,
-                                                alignItems: 'center',
-                                            }}>
-                                                <Text style={{
-                                                    color: '#182E44',
-                                                    fontSize: 20,
-                                                    fontWeight: '500',
-                                                    margin: 15,
-                                                }}>
-                                                    Filter</Text>
-                                                <View style={{
-                                                    width: '100%',
-                                                    padding: 5,
-                                                    marginBottom: 20
-                                                }}>
-                                                    <View style={{
-                                                        borderBottomColor: '#E0E0E0',
-                                                        flexDirection: 'row',
-                                                        justifyContent: 'space-between',
-                                                        borderBottomWidth: 2,
-                                                        paddingVertical: 5
-                                                    }}>
-                                                        <Text>Sort By</Text>
-                                                        <Text>rrrr</Text>
-                                                    </View>
-                                                    <View style={{
-                                                        borderBottomColor: '#E0E0E0',
-                                                        flexDirection: 'row',
-                                                        justifyContent: 'space-between',
-                                                        borderBottomWidth: 2,
-                                                        paddingVertical: 5
-                                                    }}>
-                                                        <Text>Experience Level</Text>
-                                                        <Text>rrrr</Text>
-                                                    </View>
-                                                    <View style={{
-                                                        borderBottomColor: '#E0E0E0',
-                                                        flexDirection: 'row',
-                                                        justifyContent: 'space-between',
-                                                        borderBottomWidth: 2,
-                                                        paddingVertical: 5
-                                                    }}>
-                                                        <Text>Job Type</Text>
-                                                        <Text>rrrr</Text>
-                                                    </View>
-                                                    {/* <View style={{}}> */}
-                                                    <TouchableOpacity style={{
-                                                        backgroundColor: '#3E4F88',
-                                                        marginTop: 30, 
-                                                        borderRadius: 10,
-                                                        paddingHorizontal: 5,
-                                                        paddingVertical: 10,
-                                                        alignItems: 'center',
-                                                    }}>
-                                                        <Text style={{
-                                                            fontSize: 18,
-                                                            lineHeight: 21.78,
-                                                            fontWeight: 'bold',
-                                                            color: '#FFFFFF'
-                                                        }}>
-                                                            Show results
-                                                            </Text>
-                                                    </TouchableOpacity>
-                                                    {/* </View> */}
-                                                </View>
-                                            </View>
-                                        </View>
-                                    </View>
-                                </Modal>
+                                <Image style={{ width: 22, height: 19.25 }} source={require('../assets/Group.png')} />
                             </View>
                         </View>
                     </View>
@@ -196,18 +71,10 @@ const Home = ({ navigation }) => {
                             horizontal={true}
                         />
                         <ScrollView horizontal={true}>
-                            <View style={{ 
-                                flexDirection: "row", 
-                                alignItems: "center" 
-                                }}>
+                            <View style={{ flexDirection: "row", alignItems: "center" }}>
                                 {tagJob.map((tag, i) => (
                                     <View key={i} style={styles.wrapTagJob}>
-                                        <Text style={{ 
-                                            color: "#828282", 
-                                            fontSize: 13, 
-                                            lineHeight: 16 
-                                            }}>
-                                                {tag.name}</Text>
+                                        <Text style={{ color: "#828282", fontSize: 13, lineHeight: 16 }}>{tag.name}</Text>
                                     </View>
                                 ))}
                             </View>
@@ -215,48 +82,15 @@ const Home = ({ navigation }) => {
                     </View>
                     <View style={styles.listCard}>
                         {cardData.map((card, i) => (
-                            <TouchableOpacity key={i} onPress={() => navigation.navigate('JobDetail', data(card))}>
-                                <View style={{ 
-                                    backgroundColor: "#FFFFFF", 
-                                    width: 155, 
-                                    height: 127, 
-                                    borderRadius: 8, 
-                                    padding: 11 }}>
-                                    <View style={{ 
-                                        width: 43, 
-                                        height: 43, 
-                                        backgroundColor: "rgba(52, 168, 83, 0.1)", 
-                                        borderRadius: 8, 
-                                        padding: 6 }}>
-                                        <Image style={{ 
-                                            width: 32, 
-                                            height: 31 
-                                            }} 
-                                            source={{ 
-                                                uri: card.image 
-                                                }} />
-                                    </View>
-                                    <Text style={{ 
-                                        fontSize: 14, 
-                                        lineHeight: 18, 
-                                        fontWeight: "bold", 
-                                        color: "#333333", 
-                                        top: 12 
-                                        }}>
-                                            {card.title}</Text>
-                                    <Text style={{ 
-                                        fontSize: 9, 
-                                        lineHeight: 10.89, 
-                                        color: "#828282", 
-                                        top: 12 }}>
-                                            {card.lokasi}</Text>
-                                    <Text style={{ 
-                                        fontSize: 9, 
-                                        lineHeight: 10.89, 
-                                        color: "#828282", 
-                                        top: 18 }}>
-                                            ${card.paidAt} - ${card.paidEnd} / Mo</Text>
+                            <TouchableOpacity onPress={() => navigation.navigate('JobDetail', data(card))}>
+                            <View key={i} style={{ backgroundColor: "#FFFFFF", width: 155, height: 127, borderRadius: 8, padding: 11 }}>
+                                <View style={{ width: 43, height: 43, backgroundColor: "rgba(52, 168, 83, 0.1)", borderRadius: 8, padding: 6 }}>
+                                    <Image style={{ width: 32, height: 31 }} source={{ uri: card.image }} />
                                 </View>
+                                <Text style={{ fontSize: 14, lineHeight: 18, fontWeight: "bold", color: "#333333", top: 12 }}>{card.title}</Text>
+                                <Text style={{ fontSize: 9, lineHeight: 10.89, color: "#828282", top: 12 }}>{card.lokasi}</Text>
+                                <Text style={{ fontSize: 9, lineHeight: 10.89, color: "#828282", top: 18 }}>${card.paidAt} - ${card.paidEnd} / Mo</Text>
+                            </View>
                             </TouchableOpacity>
                         ))}
                     </View>
@@ -265,8 +99,7 @@ const Home = ({ navigation }) => {
                     <Text>wwwdd</Text>
                 </View> */}
             </View>
-        </ScrollView >
-        </SafeAreaView>
+        </ScrollView>
     );
 }
 const styles = StyleSheet.create({
