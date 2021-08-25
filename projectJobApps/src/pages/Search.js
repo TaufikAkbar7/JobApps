@@ -24,13 +24,13 @@ const Search = ({ navigation, route }) => {
                 }}>
             {listData.length != 0 ? (
                 <View style={{ 
-                    flex: 1 
+                    flex: 1,
                 }}
                     >
                     <View style={{ 
-                        top: 20,
+                        top: 30,
                         justifyContent: 'center', 
-                        alignItems: 'center' 
+                        alignItems: 'center',
                     }}
                         >
                         <Text style={{ fontSize: 18 }}>
@@ -39,15 +39,14 @@ const Search = ({ navigation, route }) => {
                     <View style={{
                       width: 320,
                       height: 400,
-                      top: 17,
-                      right: 5,
+                      marginTop: 30,
                       flexWrap: "wrap",
                       flexDirection: "row",
                       justifyContent: "space-between",
                       alignContent: "space-around" 
                     }}>
                     {listData.map(item => (
-                        <Card item={item} pv={5} navigation={navigation}/>
+                        <Card item={item} navigation={navigation}/>
                     ))}
                     </View>
                 </View>

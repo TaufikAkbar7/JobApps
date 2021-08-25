@@ -21,7 +21,8 @@ const Home = ({ navigation }) => {
 
     const handleSearch = (e) => {
         setText(e);
-        const newFilter = mostPopular.filter(value => {
+        const arrayConcat = mostPopular.concat(cardData);
+        const newFilter = arrayConcat.filter(value => {
             return value.title.toLowerCase().includes(e.toLowerCase());
         });
         if (e === '') {
@@ -65,7 +66,6 @@ const Home = ({ navigation }) => {
         )
     }
 
-    console.log(text);
     return (
         <SafeAreaView>
         <ScrollView>
@@ -74,7 +74,7 @@ const Home = ({ navigation }) => {
                     <View style={styles.hero}>
                         <View style={{ flex: 0.8, flexDirection: "row" }}>
                             <View>
-                                <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>Taufik</Text></Text>
+                                <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>John Doe</Text></Text>
                                 <Text style={styles.title}>Find Your Great Job</Text>
                             </View>
                             <Image style={styles.img} source={require('../assets/Ellipse7.png')} />

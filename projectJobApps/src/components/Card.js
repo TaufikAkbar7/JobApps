@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, Image, Text } from 'react-native';
 
-const Card = ({ item, navigation, pv }) => {
+const Card = ({ item, navigation }) => {
 
     const listData = (data) => {
         const list = {
@@ -15,6 +15,15 @@ const Card = ({ item, navigation, pv }) => {
         return list;
     }
 
+    const sliceName = (name) => {
+        if(name.length >= 18) {
+            return `${name.slice(0, 16)}...`;
+        } else {
+            return name
+        }
+        
+    }
+
     return (
         <TouchableOpacity key={item.title} onPress={() => navigation.navigate('JobDetail', listData(item))}>
             <View
@@ -24,9 +33,16 @@ const Card = ({ item, navigation, pv }) => {
                     height: 127,
                     borderRadius: 8,
                     padding: 11,
-                    paddingVertical: pv
                 }}
             >
+                <View style={{
+                    width: 130,
+                    height: 43,
+                    // backgroundColor: 'red',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start'
+                }}>
                 <View style={{
                     width: 43,
                     height: 43,
@@ -37,6 +53,8 @@ const Card = ({ item, navigation, pv }) => {
                 >
                     <Image style={{ width: 32, height: 31 }} source={{ uri: item.image }} />
                 </View>
+                <Image style={{ width: 15, height: 20 }} source={require('../assets/Archieve.png')}/>
+                </View>
                 <Text style={{
                     fontSize: 14,
                     lineHeight: 18,
@@ -45,7 +63,7 @@ const Card = ({ item, navigation, pv }) => {
                     top: 12
                 }}
                 >
-                    {item.title}</Text>
+                    {sliceName(item.title)}</Text>
                 <Text style={{
                     fontSize: 9,
                     lineHeight: 10.89,
