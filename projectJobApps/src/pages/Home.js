@@ -1,9 +1,35 @@
-import { View, StyleSheet, Text, Image, TextInput, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-import React from 'react';
+import {
+    View,
+    StyleSheet,
+    Text,
+    Image,
+    TextInput,
+    ScrollView,
+    TouchableOpacity,
+    FlatList,
+    Pressable,
+    SafeAreaView
+} from 'react-native';
+import React, { useState } from 'react';
 import { mostPopular, tagJob, cardData } from '../dummy/data';
-
+import { Card } from '../components';
 
 const Home = ({ navigation }) => {
+
+    const [text, setText] = useState();
+    const [filteredData, setFilteredData] = useState([]);
+
+    const handleSearch = (e) => {
+        setText(e);
+        const newFilter = mostPopular.filter(value => {
+            return value.title.toLowerCase().includes(e.toLowerCase());
+        });
+        if (e === '') {
+            setFilteredData([])
+        } else {
+            setFilteredData(newFilter);
+        }
+    }
 
     const data = (item) => {
         const list = {
@@ -29,8 +55,8 @@ const Home = ({ navigation }) => {
                 <Text style={styles.titleJob}>{item.title}</Text>
                 <Text style={styles.lokasiJob}>{item.lokasi}</Text>
                 <View style={styles.wrapCardTagJob}>
-                    {item.tag.map(itemTag => (
-                        <View style={styles.tagJob}>
+                    {item.tag.map((itemTag, i) => (
+                        <View style={styles.tagJob} key={i}>
                             <Text style={{ fontSize: 9, lineHeight: 10.89, fontWeight: "400" }}>{itemTag.name}</Text>
                         </View>
                     ))}
@@ -39,7 +65,9 @@ const Home = ({ navigation }) => {
         )
     }
 
+    console.log(text);
     return (
+        <SafeAreaView>
         <ScrollView>
             <View style={styles.container}>
                 <View style={styles.content}>
@@ -53,8 +81,20 @@ const Home = ({ navigation }) => {
                         </View>
                         <View style={styles.wrapTextInput}>
                             <View style={styles.textInput}>
-                                {/* <Search style={{ width: 19, height: 19, tintColor: "red" }} source={require('../assets/search.svg')}/> */}
-                                <TextInput style={{ width: 200, height: 40, color: "#000" }} placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
+                                <Pressable onPress={() => navigation.navigate("Search", { data: filteredData, search: text })}>
+                                    <Image source={require('../assets/Vector.png')} style={{
+                                        width: 19,
+                                        height: 19,
+                                        tintColor: "#BDBDBD"
+                                    }} />
+                                </Pressable>
+                                <TextInput onChangeText={(e) => handleSearch(e)} style={{
+                                    width: 200,
+                                    height: 40,
+                                    color: "#BDBDBD",
+                                    marginLeft: 10
+                                }}
+                                    placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
                             </View>
                             <View style={styles.wrapFilter}>
                                 <Image style={{ width: 22, height: 19.25 }} source={require('../assets/Group.png')} />
@@ -74,24 +114,21 @@ const Home = ({ navigation }) => {
                             <View style={{ flexDirection: "row", alignItems: "center" }}>
                                 {tagJob.map((tag, i) => (
                                     <View key={i} style={styles.wrapTagJob}>
-                                        <Text style={{ color: "#828282", fontSize: 13, lineHeight: 16 }}>{tag.name}</Text>
+                                        <Text style={{
+                                            color: "#828282",
+                                            fontSize: 13,
+                                            lineHeight: 16
+                                        }}
+                                        >
+                                            {tag.name}</Text>
                                     </View>
                                 ))}
                             </View>
                         </ScrollView>
                     </View>
                     <View style={styles.listCard}>
-                        {cardData.map((card, i) => (
-                            <TouchableOpacity onPress={() => navigation.navigate('JobDetail', data(card))}>
-                            <View key={i} style={{ backgroundColor: "#FFFFFF", width: 155, height: 127, borderRadius: 8, padding: 11 }}>
-                                <View style={{ width: 43, height: 43, backgroundColor: "rgba(52, 168, 83, 0.1)", borderRadius: 8, padding: 6 }}>
-                                    <Image style={{ width: 32, height: 31 }} source={{ uri: card.image }} />
-                                </View>
-                                <Text style={{ fontSize: 14, lineHeight: 18, fontWeight: "bold", color: "#333333", top: 12 }}>{card.title}</Text>
-                                <Text style={{ fontSize: 9, lineHeight: 10.89, color: "#828282", top: 12 }}>{card.lokasi}</Text>
-                                <Text style={{ fontSize: 9, lineHeight: 10.89, color: "#828282", top: 18 }}>${card.paidAt} - ${card.paidEnd} / Mo</Text>
-                            </View>
-                            </TouchableOpacity>
+                        {cardData.map(item => (
+                            <Card item={item} navigation={navigation}/>
                         ))}
                     </View>
                 </View>
@@ -100,6 +137,7 @@ const Home = ({ navigation }) => {
                 </View> */}
             </View>
         </ScrollView>
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({
