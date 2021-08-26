@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, View, Image, Text } from 'react-native';
+import Archive from '../assets/Archive.svg';
 
 const Card = ({ item, navigation }) => {
 
@@ -25,7 +26,7 @@ const Card = ({ item, navigation }) => {
     }
 
     return (
-        <TouchableOpacity key={item.title} onPress={() => navigation.navigate('JobDetail', listData(item))}>
+        <TouchableOpacity onPress={() => navigation.navigate('JobDetail', listData(item))}>
             <View
                 style={{
                     backgroundColor: "#FFFFFF",
@@ -53,7 +54,7 @@ const Card = ({ item, navigation }) => {
                 >
                     <Image style={{ width: 32, height: 31 }} source={{ uri: item.image }} />
                 </View>
-                <Image style={{ width: 15, height: 20 }} source={require('../assets/Archieve.png')}/>
+                <Archive width={15} height={20}/>
                 </View>
                 <Text style={{
                     fontSize: 14,

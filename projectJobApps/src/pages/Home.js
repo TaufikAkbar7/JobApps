@@ -13,6 +13,11 @@ import {
 import React, { useState } from 'react';
 import { mostPopular, tagJob, cardData } from '../dummy/data';
 import { Card } from '../components';
+import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import Octicons from 'react-native-vector-icons/Octicons';
+import Profile from '../assets/Ellipse_7.svg';
+import Archive2 from '../assets/Group_782.svg';
 
 const Home = ({ navigation }) => {
 
@@ -67,40 +72,37 @@ const Home = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView>
-        <ScrollView>
-            <View style={styles.container}>
-                <View style={styles.content}>
-                    <View style={styles.hero}>
-                        <View style={{ flex: 0.8, flexDirection: "row" }}>
-                            <View>
-                                <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>John Doe</Text></Text>
-                                <Text style={styles.title}>Find Your Great Job</Text>
-                            </View>
-                            <Image style={styles.img} source={require('../assets/Ellipse7.png')} />
+        <View style={styles.container}>
+            <ScrollView>
+            <View style={styles.content}>
+                <View style={styles.hero}>
+                    <View style={{ flex: 0.8, flexDirection: "row" }}>
+                        <View>
+                            <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>John Doe</Text></Text>
+                            <Text style={styles.title}>Find Your Great Job</Text>
                         </View>
-                        <View style={styles.wrapTextInput}>
-                            <View style={styles.textInput}>
-                                <Pressable onPress={() => navigation.navigate("Search", { data: filteredData, search: text })}>
-                                    <Image source={require('../assets/Vector.png')} style={{
-                                        width: 19,
-                                        height: 19,
-                                        tintColor: "#BDBDBD"
-                                    }} />
-                                </Pressable>
-                                <TextInput onChangeText={(e) => handleSearch(e)} style={{
-                                    width: 200,
-                                    height: 40,
-                                    color: "#BDBDBD",
-                                    marginLeft: 10
-                                }}
-                                    placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
-                            </View>
-                            <View style={styles.wrapFilter}>
-                                <Image style={{ width: 22, height: 19.25 }} source={require('../assets/Group.png')} />
-                            </View>
+                        <Profile width={41} height={41} style={styles.img}/>
+                    </View>
+                    <View style={styles.wrapTextInput}>
+                        <View style={styles.textInput}>
+                            <Pressable onPress={() => navigation.navigate("Search", { data: filteredData, search: text })}>
+                                <FeatherIcon name="search" size={22} color="#BDBDBD"/>
+                            </Pressable>
+                            <TextInput onChangeText={(e) => handleSearch(e)} style={{
+                                width: 200,
+                                height: 40,
+                                color: "#BDBDBD",
+                                marginLeft: 10
+                            }}
+                                placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
+                        </View>
+                        <View style={styles.wrapFilter}>
+                            <Octicons name="settings" size={25} color="#FFFFFF"/>
                         </View>
                     </View>
+
+                </View>
+                <View style={styles.listCard}>
                     <View style={styles.carouselJob}>
                         <Text style={styles.titlePopular}>Most Popular</Text>
                         <FlatList
@@ -110,64 +112,83 @@ const Home = ({ navigation }) => {
                             keyExtractor={item => item.id}
                             horizontal={true}
                         />
-                        <ScrollView horizontal={true}>
-                            <View style={{ flexDirection: "row", alignItems: "center" }}>
-                                {tagJob.map((tag, i) => (
-                                    <View key={i} style={styles.wrapTagJob}>
-                                        <Text style={{
-                                            color: "#828282",
-                                            fontSize: 13,
-                                            lineHeight: 16
-                                        }}
-                                        >
-                                            {tag.name}</Text>
-                                    </View>
-                                ))}
-                            </View>
-                        </ScrollView>
                     </View>
-                    <View style={styles.listCard}>
-                        {cardData.map(item => (
-                            <Card item={item} navigation={navigation}/>
-                        ))}
+                    <View style={{
+                        marginBottom: 17
+                    }}>
+                    <ScrollView horizontal={true}>
+                        <View style={{ flexDirection: "row", alignItems: "center" }}>
+                            {tagJob.map((tag, i) => (
+                                <View key={i} style={styles.wrapTagJob}>
+                                    <Text style={{
+                                        color: "#828282",
+                                        fontSize: 13,
+                                        lineHeight: 16
+                                    }}
+                                    >
+                                        {tag.name}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    </ScrollView>
                     </View>
+                    {cardData.map(item => (
+                        <Card key={item.title} item={item} navigation={navigation} />
+                    ))}
                 </View>
-                {/* <View style={styles.bottomNav}>
-                    <Text>wwwdd</Text>
-                </View> */}
             </View>
-        </ScrollView>
-        </SafeAreaView>
+            </ScrollView>
+            <View style={styles.bottomNav}>
+                <View>
+                    <SimpleIcon name="home" size={25} color="#BDBDBD"/>
+                </View>
+                <View>
+                    <Archive2 width={25} height={25} color="#BDBDBD"/>
+                </View>
+                <View>
+                    <SimpleIcon name="settings" size={25} color="#BDBDBD"/>
+                </View>
+            </View>
+        </View>
+
     );
 }
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 8,
-        backgroundColor: "#F6F6F6",
-        width: 375,
-        height: 812,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
     },
     content: {
         flex: 1,
-        // width: 330,
-        // backgroundColor: "blue"
+        height: 800,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: "#F6F6F6",
     },
     bottomNav: {
-        backgroundColor: "red",
+        backgroundColor: "#FFFFFF",
         height: 70,
         alignItems: "center",
         flexDirection: "row",
+        paddingVertical: 21,
+        paddingHorizontal: 68,
+        justifyContent: 'space-between'
     },
     hero: {
-        flex: 0.7,
+        flex: 0.2,
         width: 320,
         height: 50,
         // backgroundColor: "green",
         paddingTop: 15,
-        right: 5
+    },
+    listCard: {
+        // backgroundColor: "red",
+        width: 320,
+        // height: 400,
+        flex: 1,
+        flexWrap: "wrap",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignContent: "space-between"
     },
     title: {
         fontFamily: "inter",
@@ -241,10 +262,9 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     carouselJob: {
-        // backgroundColor: "blue",
+        // backgroundColor: "red",
         width: 320,
-        height: 220,
-        right: 5
+        // height: 170,
     },
     cardCarousel: {
         backgroundColor: "#FFFFFF",
@@ -259,7 +279,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-around",
-        right: 5,
         width: 180,
         // backgroundColor: "blue", 
         top: 20
@@ -283,17 +302,6 @@ const styles = StyleSheet.create({
         paddingVertical: 3,
         borderRadius: 8,
         marginRight: 7
-    },
-    listCard: {
-        // backgroundColor: "red",
-        width: 320,
-        height: 400,
-        top: 17,
-        right: 5,
-        flexWrap: "wrap",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignContent: "space-between"
     },
 })
 export default Home;

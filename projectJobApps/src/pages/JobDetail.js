@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import React from 'react';
 import { Tag, Btn } from '../components';
+import Archive2 from '../assets/Group_782.svg';
 
 const JobDetail = ({ route, navigation }) => {
 
@@ -149,6 +150,9 @@ const JobDetail = ({ route, navigation }) => {
                 flexDirection: "row"
             }}
             >
+                <View style={{
+                    marginRight: 10
+                }}>
                 <Btn
                     width={267}
                     height={50}
@@ -167,14 +171,14 @@ const JobDetail = ({ route, navigation }) => {
                     bg="#3E4F88"
                     br={10}
                 />
+                </View>
                 <View style={{
-                    backgroundColor: "transparent",
-                    width: 50,
-                    height: 50,
-                    marginRight: 5,
-                    padding: 10
+                    backgroundColor: "#FFFFFF",
+                    marginRight: 10,
+                    padding: 10,
+                    borderRadius: 10
                 }}>
-                    <Image style={{ width: 29, height: 29 }} source={require('../assets/Group_783.png')} />
+                    <Archive2 width={29} height={29}/>
                 </View>
             </View>
         </View>

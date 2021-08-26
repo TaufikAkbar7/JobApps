@@ -1,13 +1,14 @@
 import React from 'react';
 import { Text, View, Image } from 'react-native';
 import { Btn } from '../components';
+import SvgBoarding from '../assets/onboarding.svg';
 
 const onBoarding = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: "#F6F6F6" }}>
             <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-                <Image style={{marginTop: 150}} source={require('../assets/Group_1360.png')} />
+                <SvgBoarding width={297} height={156} style={{ marginTop: 150 }}/>
                 <View style={{ marginTop: 101 }}>
                     <Text style={{ 
                         fontSize: 18.6, 
