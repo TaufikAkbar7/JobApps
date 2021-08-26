@@ -1,6 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, View, Image, Text } from 'react-native';
+import { View, Image, Text, Pressable, TouchableOpacity } from 'react-native';
 import Archive from '../assets/Archive.svg';
+import createTwoButtonAlert from './Alert';
 
 const Card = ({ item, navigation }) => {
 
@@ -26,7 +27,7 @@ const Card = ({ item, navigation }) => {
     }
 
     return (
-        <TouchableOpacity onPress={() => navigation.navigate('JobDetail', listData(item))}>
+        <Pressable onPress={() => navigation.navigate('JobDetail', listData(item))}>
             <View
                 style={{
                     backgroundColor: "#FFFFFF",
@@ -39,7 +40,6 @@ const Card = ({ item, navigation }) => {
                 <View style={{
                     width: 130,
                     height: 43,
-                    // backgroundColor: 'red',
                     flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'flex-start'
@@ -54,7 +54,9 @@ const Card = ({ item, navigation }) => {
                 >
                     <Image style={{ width: 32, height: 31 }} source={{ uri: item.image }} />
                 </View>
-                <Archive width={15} height={20}/>
+                <TouchableOpacity onPress={createTwoButtonAlert}>
+                    <Archive width={15} height={20}/>
+                </TouchableOpacity>
                 </View>
                 <Text style={{
                     fontSize: 14,
@@ -82,7 +84,7 @@ const Card = ({ item, navigation }) => {
                 >
                     ${item.paidAt} - ${item.paidEnd} / Mo</Text>
             </View>
-        </TouchableOpacity>
+        </Pressable>
     );
 }
 

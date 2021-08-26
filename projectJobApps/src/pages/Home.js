@@ -8,11 +8,11 @@ import {
     TouchableOpacity,
     FlatList,
     Pressable,
-    SafeAreaView
+    SafeAreaView,
 } from 'react-native';
 import React, { useState } from 'react';
 import { mostPopular, tagJob, cardData } from '../dummy/data';
-import { Card } from '../components';
+import { Card, createTwoButtonAlert } from '../components';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -72,85 +72,92 @@ const Home = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <ScrollView>
-            <View style={styles.content}>
-                <View style={styles.hero}>
-                    <View style={{ flex: 0.8, flexDirection: "row" }}>
-                        <View>
-                            <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>John Doe</Text></Text>
-                            <Text style={styles.title}>Find Your Great Job</Text>
+                <View style={styles.content}>
+                    <View style={styles.hero}>
+                        <View style={{ flex: 0.8, flexDirection: "row" }}>
+                            <View>
+                                <Text style={styles.subTitle}>Hello, <Text style={styles.textBold}>John Doe</Text></Text>
+                                <Text style={styles.title}>Find Your Great Job</Text>
+                            </View>
+                            <Profile width={41} height={41} style={styles.img} />
                         </View>
-                        <Profile width={41} height={41} style={styles.img}/>
-                    </View>
-                    <View style={styles.wrapTextInput}>
-                        <View style={styles.textInput}>
-                            <Pressable onPress={() => navigation.navigate("Search", { data: filteredData, search: text })}>
-                                <FeatherIcon name="search" size={22} color="#BDBDBD"/>
-                            </Pressable>
-                            <TextInput onChangeText={(e) => handleSearch(e)} style={{
-                                width: 200,
-                                height: 40,
-                                color: "#BDBDBD",
-                                marginLeft: 10
-                            }}
-                                placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
+                        <View style={styles.wrapTextInput}>
+                            <View style={styles.textInput}>
+                                <Pressable onPress={() => navigation.navigate("Search", { data: filteredData, search: text })}>
+                                    <FeatherIcon name="search" size={22} color="#BDBDBD" />
+                                </Pressable>
+                                <TextInput onChangeText={(e) => handleSearch(e)} style={{
+                                    width: 200,
+                                    height: 40,
+                                    color: "#BDBDBD",
+                                    marginLeft: 10
+                                }}
+                                    placeholder="Search a Job" placeholderTextColor="#BDBDBD" />
+                            </View>
+                            <View style={styles.wrapFilter}>
+                                <Pressable onPress={createTwoButtonAlert}>
+                                <Octicons name="settings" size={25} color="#FFFFFF" />
+                                </Pressable>
+                            </View>
                         </View>
-                        <View style={styles.wrapFilter}>
-                            <Octicons name="settings" size={25} color="#FFFFFF"/>
-                        </View>
-                    </View>
 
-                </View>
-                <View style={styles.listCard}>
-                    <View style={styles.carouselJob}>
-                        <Text style={styles.titlePopular}>Most Popular</Text>
-                        <FlatList
-                            data={mostPopular}
-                            style={{ marginTop: 12 }}
-                            renderItem={mostPopularItem}
-                            keyExtractor={item => item.id}
-                            horizontal={true}
-                        />
                     </View>
-                    <View style={{
-                        marginBottom: 17
-                    }}>
-                    <ScrollView horizontal={true}>
-                        <View style={{ flexDirection: "row", alignItems: "center" }}>
-                            {tagJob.map((tag, i) => (
-                                <View key={i} style={styles.wrapTagJob}>
-                                    <Text style={{
-                                        color: "#828282",
-                                        fontSize: 13,
-                                        lineHeight: 16
-                                    }}
-                                    >
-                                        {tag.name}</Text>
-                                </View>
-                            ))}
+                    <View style={styles.listCard}>
+                        <View style={styles.carouselJob}>
+                            <Text style={styles.titlePopular}>Most Popular</Text>
+                            <FlatList
+                                data={mostPopular}
+                                style={{ marginTop: 12 }}
+                                renderItem={mostPopularItem}
+                                keyExtractor={item => item.id}
+                                horizontal={true}
+                            />
                         </View>
-                    </ScrollView>
+                        <View style={{
+                            marginBottom: 17
+                        }}>
+                            <ScrollView horizontal={true}>
+                                <View style={{ flexDirection: "row", alignItems: "center" }}>
+                                    {tagJob.map((tag, i) => (
+                                        <View key={i} style={styles.wrapTagJob}>
+                                            <Text style={{
+                                                color: "#828282",
+                                                fontSize: 13,
+                                                lineHeight: 16
+                                            }}
+                                            >
+                                                {tag.name}</Text>
+                                        </View>
+                                    ))}
+                                </View>
+                            </ScrollView>
+                        </View>
+                        {cardData.map(item => (
+                            <Card key={item.title} item={item} navigation={navigation} />
+                        ))}
                     </View>
-                    {cardData.map(item => (
-                        <Card key={item.title} item={item} navigation={navigation} />
-                    ))}
                 </View>
-            </View>
             </ScrollView>
             <View style={styles.bottomNav}>
                 <View>
-                    <SimpleIcon name="home" size={25} color="#BDBDBD"/>
+                    <Pressable onPress={() => navigation.navigate('Home')}>
+                        <SimpleIcon name="home" size={25} color="#BDBDBD" />
+                    </Pressable>
                 </View>
                 <View>
-                    <Archive2 width={25} height={25} color="#BDBDBD"/>
+                    <Pressable onPress={() => navigation.navigate('Archive')}>
+                        <Archive2 width={25} height={25} color="#BDBDBD" />
+                    </Pressable>
                 </View>
                 <View>
-                    <SimpleIcon name="settings" size={25} color="#BDBDBD"/>
+                    <Pressable onPress={() => navigation.navigate('Setting')}>
+                        <SimpleIcon name="settings" size={25} color="#BDBDBD" />
+                    </Pressable>
                 </View>
             </View>
-        </View>
-
+        </SafeAreaView>
     );
 }
 const styles = StyleSheet.create({

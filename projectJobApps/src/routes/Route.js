@@ -1,7 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Home, JobDetail, onBoarding, Search } from '../pages';
+import { 
+    Home, 
+    JobDetail, 
+    onBoarding, 
+    Search, 
+    Archive, 
+    Setting 
+} from '../pages';
 
 const Route = () => {
 
@@ -36,6 +43,20 @@ const Route = () => {
                 <Stack.Screen
                     name="Search"
                     component={Search}
+                    options={{
+                        headerTitleAlign: 'center'
+                    }}
+                />
+                <Stack.Screen
+                    name="Archive"
+                    component={Archive}
+                    options={{
+                        headerTitleAlign: 'center'
+                    }}
+                />
+                <Stack.Screen
+                    name="Setting"
+                    component={Setting}
                     options={{
                         headerTitleAlign: 'center'
                     }}

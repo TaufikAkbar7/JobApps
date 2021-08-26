@@ -46,7 +46,7 @@ const Search = ({ navigation, route }) => {
                       alignContent: "space-around" 
                     }}>
                     {listData.map(item => (
-                        <Card item={item} navigation={navigation}/>
+                        <Card key={item.title} item={item} navigation={navigation}/>
                     ))}
                     </View>
                 </View>
