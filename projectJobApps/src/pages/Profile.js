@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView, Pressable } from 'react-native';
-import { createTwoButtonAlert } from '../components';
-import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
-import Archive2 from '../assets/Group_782.svg';
+import { View, Text, SafeAreaView, ScrollView } from 'react-native';
 import ProfileImg from '../assets/Ellipse_7.svg';
+import { BottomNav } from '../components';
 import { profile } from '../dummy/data';
 
 const Profile = ({ navigation }) => {
@@ -124,31 +122,7 @@ const Profile = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
-                    <View style={{
-                        height: 70,
-                        backgroundColor: "#FFFFFF",
-                        alignItems: "center",
-                        flexDirection: "row",
-                        paddingVertical: 21,
-                        paddingHorizontal: 68,
-                        justifyContent: 'space-between'
-                    }}>
-                        <View>
-                            <Pressable onPress={() => navigation.navigate('Home')}>
-                                <SimpleIcon name="home" size={25} color="#BDBDBD" />
-                            </Pressable>
-                        </View>
-                        <View>
-                            <Pressable onPress={() => navigation.navigate('Archive')}>
-                                <Archive2 width={25} height={25} color="#BDBDBD" />
-                            </Pressable>
-                        </View>
-                        <View>
-                            <Pressable onPress={() => navigation.navigate('Profile')}>
-                                <SimpleIcon name="user" size={25} color="#BDBDBD" />
-                            </Pressable>
-                        </View>
-                    </View>
+                    <BottomNav navigation={navigation}/>
                 </View>
             </ScrollView>
         </SafeAreaView>

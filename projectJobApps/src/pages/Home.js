@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { mostPopular, tagJob, cardData } from '../dummy/data';
-import { Card, createTwoButtonAlert } from '../components';
+import { BottomNav, Card, createTwoButtonAlert } from '../components';
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import Octicons from 'react-native-vector-icons/Octicons';
@@ -140,23 +140,7 @@ const Home = ({ navigation }) => {
                     </View>
                 </View>
             </ScrollView>
-            <View style={styles.bottomNav}>
-                <View>
-                    <Pressable onPress={() => navigation.navigate('Home')}>
-                        <SimpleIcon name="home" size={25} color="#BDBDBD" />
-                    </Pressable>
-                </View>
-                <View>
-                    <Pressable onPress={() => navigation.navigate('Archive')}>
-                        <Archive2 width={25} height={25} color="#BDBDBD" />
-                    </Pressable>
-                </View>
-                <View>
-                    <Pressable onPress={() => navigation.navigate('Profile')}>
-                        <SimpleIcon name="user" size={25} color="#BDBDBD" />
-                    </Pressable>
-                </View>
-            </View>
+            <BottomNav navigation={navigation}/>
         </SafeAreaView>
     );
 }
@@ -170,15 +154,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: "#F6F6F6",
-    },
-    bottomNav: {
-        backgroundColor: "#FFFFFF",
-        height: 70,
-        alignItems: "center",
-        flexDirection: "row",
-        paddingVertical: 21,
-        paddingHorizontal: 68,
-        justifyContent: 'space-between'
     },
     hero: {
         flex: 0.2,

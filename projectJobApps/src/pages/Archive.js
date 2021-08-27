@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, SafeAreaView, ScrollView } from 'react-native';
 import { listDataArchive } from '../dummy/data';
-import { Card } from '../components';
+import { BottomNav, Card } from '../components';
 
 const Archive = ({ navigation }) => {
     return (
@@ -10,7 +10,8 @@ const Archive = ({ navigation }) => {
                 <View style={{
                     flex: 1,
                     backgroundColor: "#F6F6F6",
-                    alignItems: "center"
+                    alignItems: "center",
+                    height: 578,
                 }}>
                     <View style={{
                         height: 400,
@@ -26,6 +27,7 @@ const Archive = ({ navigation }) => {
                         ))}
                     </View>
                 </View>
+                <BottomNav navigation={navigation}/>
             </ScrollView>
         </SafeAreaView>
     );
