@@ -1,6 +1,6 @@
-import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView, Pressable } from 'react-native';
 import React from 'react';
-import { Tag, Btn } from '../components';
+import { Tag, Btn, createTwoButtonAlert } from '../components';
 import Archive2 from '../assets/Group_782.svg';
 
 const JobDetail = ({ route, navigation }) => {
@@ -50,14 +50,14 @@ const JobDetail = ({ route, navigation }) => {
                                     alignItems: 'center',
                                     justifyContent: 'center'
                                 }}>
-                                <Text style={{
-                                    color: "#3E4F88",
-                                    fontWeight: "bold",
-                                    fontSize: 13,
-                                    lineHeight: 15.73,
-                                }}
-                                >
-                                    Description </Text>
+                                    <Text style={{
+                                        color: "#3E4F88",
+                                        fontWeight: "bold",
+                                        fontSize: 13,
+                                        lineHeight: 15.73,
+                                    }}
+                                    >
+                                        Description </Text>
                                 </View>
                                 <View style={{
                                     flex: 0.5,
@@ -66,15 +66,15 @@ const JobDetail = ({ route, navigation }) => {
                                     justifyContent: "center",
                                     borderRadius: 6,
                                 }}>
-                                <Text style={{
-                                    color: "#828282",
-                                    fontWeight: "bold",
-                                    fontSize: 13,
-                                    lineHeight: 15.73
-                                }}
-                                >
-                                    Company </Text>
-                                    </View>
+                                    <Text style={{
+                                        color: "#828282",
+                                        fontWeight: "bold",
+                                        fontSize: 13,
+                                        lineHeight: 15.73
+                                    }}
+                                    >
+                                        Company </Text>
+                                </View>
                             </View>
                             <View style={{ marginTop: 18, height: 390 }}>
                                 <View style={{ flex: 0.3 }}>
@@ -153,24 +153,24 @@ const JobDetail = ({ route, navigation }) => {
                 <View style={{
                     marginRight: 10
                 }}>
-                <Btn
-                    width={267}
-                    height={50}
-                    paddingVertical={14}
-                    paddingHorizontal={87}
-                    borderRadius={10}
-                    title="Apply Now"
-                    color="#FFFFFF"
-                    aliItems="center"
-                    jusContent="center"
-                    fs={18}
-                    lh={21.78}
-                    fw="bold"
-                    navigation={navigation}
-                    to="Home"
-                    bg="#3E4F88"
-                    br={10}
-                />
+                    <Btn
+                        width={267}
+                        height={50}
+                        paddingVertical={14}
+                        paddingHorizontal={87}
+                        borderRadius={10}
+                        title="Apply Now"
+                        color="#FFFFFF"
+                        aliItems="center"
+                        jusContent="center"
+                        fs={18}
+                        lh={21.78}
+                        fw="bold"
+                        navigation={navigation}
+                        to="Home"
+                        bg="#3E4F88"
+                        br={10}
+                    />
                 </View>
                 <View style={{
                     backgroundColor: "#FFFFFF",
@@ -178,7 +178,9 @@ const JobDetail = ({ route, navigation }) => {
                     padding: 10,
                     borderRadius: 10
                 }}>
-                    <Archive2 width={29} height={29}/>
+                    <Pressable onPress={createTwoButtonAlert}>
+                        <Archive2 width={29} height={29} />
+                    </Pressable>
                 </View>
             </View>
         </View>

@@ -152,8 +152,8 @@ const Home = ({ navigation }) => {
                     </Pressable>
                 </View>
                 <View>
-                    <Pressable onPress={() => navigation.navigate('Setting')}>
-                        <SimpleIcon name="settings" size={25} color="#BDBDBD" />
+                    <Pressable onPress={() => navigation.navigate('Profile')}>
+                        <SimpleIcon name="user" size={25} color="#BDBDBD" />
                     </Pressable>
                 </View>
             </View>
@@ -245,8 +245,6 @@ const styles = StyleSheet.create({
         // backgroundColor: "green",
     },
     img: {
-        width: 41,
-        height: 41,
         left: 90
     },
     textInput: {

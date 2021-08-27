@@ -345,3 +345,13 @@ export const listDataArchive = [
         ]
     },
 ]
+
+export const profile = {
+    name: 'John Doe',
+    phone: '081213225643',
+    email: 'test@gmail.com',
+    location: 'Jakarta',
+    nasional: 'Indonesia',
+    age: 21,
+    sex: 'Male'
+}

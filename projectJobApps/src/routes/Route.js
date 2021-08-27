@@ -7,7 +7,7 @@ import {
     onBoarding, 
     Search, 
     Archive, 
-    Setting 
+    Profile 
 } from '../pages';
 
 const Route = () => {
@@ -55,10 +55,10 @@ const Route = () => {
                     }}
                 />
                 <Stack.Screen
-                    name="Setting"
-                    component={Setting}
+                    name="Profile"
+                    component={Profile}
                     options={{
-                        headerTitleAlign: 'center'
+                        headerShown: false
                     }}
                 />
             </Stack.Navigator>

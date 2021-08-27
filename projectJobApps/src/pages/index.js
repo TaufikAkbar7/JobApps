@@ -3,6 +3,6 @@ import Home from "./Home";
 import JobDetail from "./JobDetail";
 import onBoarding from "./onBoarding";
 import Search from "./Search";
-import Setting from "./Setting";
+import Profile from "./Profile";
 
-export { Home, JobDetail, onBoarding, Search, Archive, Setting };
+export { Home, JobDetail, onBoarding, Search, Archive, Profile };
